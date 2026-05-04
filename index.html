@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lakshan Hirosh | Portfolio & Interactive Resume</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #faf9f6;
+    color: #334155;
+    scroll-behavior: smooth;
+}
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 350px;
+    max-height: 450px;
+}
+@media (min-width: 768px) {
+    .chart-container {
+        height: 400px;
+    }
+}
+.portfolio-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.portfolio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(15, 118, 110, 0.2);
+}
+.filter-btn.active {
+    background-color: #0f766e;
+    color: white;
+}
+.hide-item {
+    display: none;
+}
+</style>
+</head>
+<body class="antialiased selection:bg-teal-200 selection:text-teal-900">
+
+<!-- Chosen Palette: Warm Neutrals with Muted Teal (#0f766e) and Warm Amber (#d97706) Accents -->
+<!-- Application Structure Plan: The SPA uses a dashboard-inspired scrolling layout. It begins with a high-impact Hero section, flows into an Interactive Skills Analysis (using a radar chart to show multi-disciplinary strengths), moves to a Data-Driven Marketing Impact section (visualizing campaign success), features a dynamic Filterable Portfolio Gallery (CSS/HTML based to avoid SVGs), and concludes with an actionable Contact area. This structure allows users to logically explore Lakshan's diverse skill set from broad capabilities down to specific project examples. -->
+<!-- Visualization & Content Choices: 1. Skills Radar Chart (Chart.js) -> Goal: Compare proficiency across domains -> Interaction: Hover for exact metric -> Justification: Best for showing balanced multi-disciplinary skills. 2. Line Chart (Chart.js) -> Goal: Inform on marketing ROI -> Interaction: Hover for monthly data points -> Justification: Clearly shows growth trends over time. 3. HTML/CSS Portfolio Cards -> Goal: Organize past work -> Interaction: Category filtering -> Justification: Adheres to NO SVG rule while providing a highly interactive sorting experience. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+<nav class="fixed w-full bg-[#faf9f6]/90 backdrop-blur-md z-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+            <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                <div class="w-8 h-8 bg-teal-700 text-white flex items-center justify-center font-bold rounded-lg shadow-md">LH</div>
+                <span class="font-bold text-xl tracking-tight text-slate-800">Lakshan Hirosh</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#expertise" class="text-slate-600 hover:text-teal-700 font-medium transition-colors">Expertise Map</a>
+                <a href="#impact" class="text-slate-600 hover:text-teal-700 font-medium transition-colors">Marketing Impact</a>
+                <a href="#portfolio" class="text-slate-600 hover:text-teal-700 font-medium transition-colors">Project Portfolio</a>
+                <a href="#contact" class="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-md font-medium transition-colors">Let's Talk</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<main class="pt-24 pb-12">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 flex flex-col lg:flex-row items-center gap-12">
+        <div class="flex-1 text-center lg:text-left">
+            <div class="inline-block px-3 py-1 bg-teal-100 text-teal-800 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
+                Creative Technologist
+            </div>
+            <h1 class="text-5xl lg:text-7xl font-extrabold text-slate-900 tracking-tight mb-6 leading-tight">
+                Designing the Future with <span class="text-teal-700">Data</span> & <span class="text-amber-600">AI</span>.
+            </h1>
+            <p class="text-lg text-slate-600 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                I am Lakshan Hirosh. I bridge the gap between aesthetic graphic design, high-conversion digital marketing, and cutting-edge AI content generation to build brands that stand out in a noisy digital landscape.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <a href="#portfolio" class="bg-teal-700 hover:bg-teal-800 text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors shadow-lg">
+                    Explore My Work
+                </a>
+                <a href="#impact" class="bg-white border-2 border-slate-300 hover:border-teal-700 hover:text-teal-700 text-slate-700 px-8 py-4 rounded-lg font-bold text-lg transition-colors">
+                    View Impact Metrics
+                </a>
+            </div>
+        </div>
+        <div class="flex-1 w-full flex justify-center">
+            <div class="grid grid-cols-2 gap-4 w-full max-w-md relative">
+                <div class="bg-teal-700 text-white p-6 rounded-2xl shadow-xl transform translate-y-4">
+                    <div class="text-4xl mb-2">&#127912;</div>
+                    <h3 class="font-bold text-xl mb-1">Visual Design</h3>
+                    <p class="text-teal-100 text-sm">Brand identities & UI/UX</p>
+                </div>
+                <div class="bg-amber-600 text-white p-6 rounded-2xl shadow-xl transform -translate-y-4">
+                    <div class="text-4xl mb-2">&#128200;</div>
+                    <h3 class="font-bold text-xl mb-1">Growth Marketing</h3>
+                    <p class="text-amber-100 text-sm">SEO, PPC & Strategy</p>
+                </div>
+                <div class="bg-slate-800 text-white p-6 rounded-2xl shadow-xl transform translate-x-4 col-span-2">
+                    <div class="text-4xl mb-2">&#129302;</div>
+                    <h3 class="font-bold text-xl mb-1">AI Integration</h3>
+                    <p class="text-slate-300 text-sm">Prompt engineering & generative workflows scaling content production by 300%.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="expertise" class="bg-white py-24 border-y border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">The Multi-Disciplinary Expertise Map</h2>
+                <p class="text-slate-600 text-lg">
+                    This section visualizes my core competencies across the three primary domains of my expertise. The radar chart below allows you to explore the depth of my skills in Graphic Design, Marketing, and AI Content Creation. Hover over the data points to see the exact proficiency levels. This comprehensive approach ensures campaigns are not only beautiful but also effective and scalable.
+                </p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="flex-1 w-full">
+                    <div class="chart-container">
+                        <canvas id="skillsRadarChart"></canvas>
+                    </div>
+                </div>
+                <div class="flex-1 w-full space-y-6">
+                    <div id="skill-desc-design" class="p-6 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-md transition-shadow cursor-pointer" onclick="highlightChart('design')">
+                        <h3 class="text-xl font-bold text-teal-800 flex items-center gap-2">&#127912; Graphic Design & UI/UX</h3>
+                        <p class="text-slate-600 mt-2">Proficient in Adobe Creative Suite and Figma. Focused on creating user-centric interfaces and compelling brand identities that communicate value instantly.</p>
+                    </div>
+                    <div id="skill-desc-marketing" class="p-6 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-md transition-shadow cursor-pointer" onclick="highlightChart('marketing')">
+                        <h3 class="text-xl font-bold text-amber-700 flex items-center gap-2">&#128227; Digital Marketing</h3>
+                        <p class="text-slate-600 mt-2">Data-driven strategies focusing on SEO optimization, highly targeted PPC campaigns, and social media growth to maximize ROI and audience engagement.</p>
+                    </div>
+                    <div id="skill-desc-ai" class="p-6 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-md transition-shadow cursor-pointer" onclick="highlightChart('ai')">
+                        <h3 class="text-xl font-bold text-slate-800 flex items-center gap-2">&#9881;&#65039; AI Content Architecture</h3>
+                        <p class="text-slate-600 mt-2">Leveraging tools like Midjourney, ChatGPT, and custom LLM workflows to rapidly prototype concepts, generate massive content variations, and automate copy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Quantifying Marketing Impact</h2>
+                <p class="text-slate-600 text-lg">
+                    Great design is subjective; marketing impact is objective. This dashboard visualizes the concrete results achieved in a recent 6-month integrated campaign where I combined AI-generated visuals with precise A/B tested ad copy. Interact with the chart to view specific monthly growth metrics for Organic Traffic and Lead Conversion.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 md:p-10 rounded-2xl shadow-sm border border-gray-200">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 text-center">
+                    <div class="p-4 bg-teal-50 rounded-lg">
+                        <div class="text-4xl font-extrabold text-teal-700 mb-1">+240%</div>
+                        <div class="text-sm font-semibold text-teal-900 uppercase tracking-wider">Traffic Growth</div>
+                    </div>
+                    <div class="p-4 bg-amber-50 rounded-lg">
+                        <div class="text-4xl font-extrabold text-amber-600 mb-1">3.5x</div>
+                        <div class="text-sm font-semibold text-amber-900 uppercase tracking-wider">ROAS Achieved</div>
+                    </div>
+                    <div class="p-4 bg-slate-100 rounded-lg">
+                        <div class="text-4xl font-extrabold text-slate-800 mb-1">-45%</div>
+                        <div class="text-sm font-semibold text-slate-600 uppercase tracking-wider">Cost Per Lead</div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="impactChart"></canvas>
+                </div>
+                <div class="mt-6 text-center text-sm text-slate-500">
+                    *Data represents a normalized aggregate of B2B client campaigns (Q3-Q4).
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="bg-slate-900 py-24 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold mb-4">Interactive Project Portfolio</h2>
+                <p class="text-slate-300 text-lg">
+                    Explore my synthesized body of work. Use the interactive filters below to sort projects by discipline. Each card represents a real-world application of graphic design, digital strategy, or AI implementation. 
+                </p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3 mb-12" id="portfolio-filters">
+                <button class="filter-btn active px-6 py-2 rounded-full font-medium text-sm transition-colors border border-teal-700 bg-teal-700 text-white" data-filter="all">Show All</button>
+                <button class="filter-btn px-6 py-2 rounded-full font-medium text-sm transition-colors border border-slate-600 text-slate-300 hover:border-teal-500 hover:text-white" data-filter="design">Graphic Design</button>
+                <button class="filter-btn px-6 py-2 rounded-full font-medium text-sm transition-colors border border-slate-600 text-slate-300 hover:border-teal-500 hover:text-white" data-filter="marketing">Marketing Campaigns</button>
+                <button class="filter-btn px-6 py-2 rounded-full font-medium text-sm transition-colors border border-slate-600 text-slate-300 hover:border-teal-500 hover:text-white" data-filter="ai">AI Content</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
+                
+                <div class="portfolio-card bg-slate-800 rounded-xl overflow-hidden border border-slate-700 item-design">
+                    <div class="h-48 bg-gradient-to-br from-teal-500 to-emerald-700 flex items-center justify-center">
+                        <span class="text-6xl opacity-80">&#10024;</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs font-bold text-teal-400 mb-2 uppercase tracking-wider">Graphic Design</div>
+                        <h3 class="text-xl font-bold mb-2">FinTech Brand Identity</h3>
+                        <p class="text-slate-400 text-sm">Complete visual overhaul for a modern payment gateway, including logo, typography system, and UI guidelines.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-card bg-slate-800 rounded-xl overflow-hidden border border-slate-700 item-marketing">
+                    <div class="h-48 bg-gradient-to-br from-amber-500 to-orange-700 flex items-center justify-center">
+                        <span class="text-6xl opacity-80">&#128640;</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs font-bold text-amber-400 mb-2 uppercase tracking-wider">Marketing Campaign</div>
+                        <h3 class="text-xl font-bold mb-2">E-commerce Black Friday Scale</h3>
+                        <p class="text-slate-400 text-sm">Orchestrated a multi-channel PPC and email marketing sprint that resulted in a record-breaking $1.2M weekend revenue.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-card bg-slate-800 rounded-xl overflow-hidden border border-slate-700 item-ai">
+                    <div class="h-48 bg-gradient-to-br from-purple-500 to-indigo-700 flex items-center justify-center">
+                        <span class="text-6xl opacity-80">&#127918;</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs font-bold text-indigo-400 mb-2 uppercase tracking-wider">AI Content</div>
+                        <h3 class="text-xl font-bold mb-2">Procedural Concept Art Generation</h3>
+                        <p class="text-slate-400 text-sm">Developed custom Midjourney prompt architectures to generate 500+ cohesive environmental assets for an indie game studio in 3 days.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-card bg-slate-800 rounded-xl overflow-hidden border border-slate-700 item-design item-ai">
+                    <div class="h-48 bg-gradient-to-tr from-rose-500 to-pink-700 flex items-center justify-center">
+                        <span class="text-6xl opacity-80">&#128444;&#65039;</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs font-bold text-rose-400 mb-2 uppercase tracking-wider">Design & AI</div>
+                        <h3 class="text-xl font-bold mb-2">AI-Augmented Editorial Layout</h3>
+                        <p class="text-slate-400 text-sm">Magazine spread design where background textures and supporting spot illustrations were entirely generated and upscaled using AI.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-card bg-slate-800 rounded-xl overflow-hidden border border-slate-700 item-marketing item-design">
+                    <div class="h-48 bg-gradient-to-bl from-blue-500 to-cyan-700 flex items-center justify-center">
+                        <span class="text-6xl opacity-80">&#128241;</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs font-bold text-cyan-400 mb-2 uppercase tracking-wider">Marketing & UI</div>
+                        <h3 class="text-xl font-bold mb-2">High-Conversion Landing Pages</h3>
+                        <p class="text-slate-400 text-sm">Designed and A/B tested a series of SaaS landing pages, improving overall conversion rates from 2.1% to 5.4% over 8 weeks.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-card bg-slate-800 rounded-xl overflow-hidden border border-slate-700 item-ai item-marketing">
+                    <div class="h-48 bg-gradient-to-br from-slate-500 to-slate-700 flex items-center justify-center">
+                        <span class="text-6xl opacity-80">&#128221;</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs font-bold text-slate-300 mb-2 uppercase tracking-wider">AI & SEO</div>
+                        <h3 class="text-xl font-bold mb-2">Automated SEO Blog Engine</h3>
+                        <p class="text-slate-400 text-sm">Built a workflow combining keyword data with LLMs to generate high-ranking, structurally sound technical blog posts at scale.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 bg-teal-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-extrabold text-slate-900 mb-6">Ready to Innovate?</h2>
+            <p class="text-lg text-slate-600 mb-10">
+                Whether you need a brand refresh, a growth-focused marketing strategy, or want to integrate AI into your content pipeline, I'm ready to help you scale.
+            </p>
+            <div class="bg-white p-8 rounded-2xl shadow-lg text-left border border-teal-100">
+                <form id="contactForm" onsubmit="event.preventDefault(); alert('In a live environment, this would submit the message.');">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Name</label>
+                            <input type="text" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-all" placeholder="John Doe" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-all" placeholder="john@company.com" required>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-slate-700 mb-2">Project Type</label>
+                        <select class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-all">
+                            <option>Graphic Design & Branding</option>
+                            <option>Digital Marketing Strategy</option>
+                            <option>AI Content & Workflow Automation</option>
+                            <option>Full-Stack Consultation (All of the above)</option>
+                        </select>
+                    </div>
+                    <div class="mb-8">
+                        <label class="block text-sm font-medium text-slate-700 mb-2">Message</label>
+                        <textarea rows="4" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-all" placeholder="Tell me about your goals..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-teal-700 hover:bg-teal-800 text-white font-bold py-4 rounded-lg transition-colors shadow-md text-lg">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+        <p>&copy; <span id="year"></span> Lakshan Hirosh. Designed & Developed for the Modern Web.</p>
+    </div>
+</footer>
+
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const skillsData = {
+        labels: ['UI/UX Design', 'Branding', 'SEO Strategy', 'PPC Ads', 'Prompt Engineering', 'AI Automation'],
+        datasets: [{
+            label: 'Proficiency',
+            data: [90, 85, 80, 75, 95, 88],
+            backgroundColor: 'rgba(15, 118, 110, 0.2)',
+            borderColor: 'rgba(15, 118, 110, 1)',
+            pointBackgroundColor: 'rgba(217, 119, 6, 1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(217, 119, 6, 1)',
+            borderWidth: 2
+        }]
+    };
+
+    const ctxSkills = document.getElementById('skillsRadarChart').getContext('2d');
+    let skillsChart = new Chart(ctxSkills, {
+        type: 'radar',
+        data: skillsData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                    grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                    pointLabels: {
+                        font: { family: "'Inter', sans-serif", size: 12, weight: '600' },
+                        color: '#334155'
+                    },
+                    ticks: { display: false, min: 0, max: 100 }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                    titleFont: { family: "'Inter', sans-serif" },
+                    bodyFont: { family: "'Inter', sans-serif" },
+                    padding: 12,
+                    cornerRadius: 8,
+                    callbacks: {
+                        label: function(context) {
+                            return context.raw + '/100 Expertise Level';
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    window.highlightChart = function(category) {
+        document.getElementById('skill-desc-design').classList.remove('ring-2', 'ring-teal-500');
+        document.getElementById('skill-desc-marketing').classList.remove('ring-2', 'ring-amber-500');
+        document.getElementById('skill-desc-ai').classList.remove('ring-2', 'ring-slate-500');
+
+        let dataValues = [90, 85, 80, 75, 95, 88];
+        let bgColor = 'rgba(15, 118, 110, 0.2)';
+        let borderColor = 'rgba(15, 118, 110, 1)';
+
+        if(category === 'design') {
+            document.getElementById('skill-desc-design').classList.add('ring-2', 'ring-teal-500');
+            dataValues = [95, 90, 40, 30, 60, 50];
+        } else if (category === 'marketing') {
+            document.getElementById('skill-desc-marketing').classList.add('ring-2', 'ring-amber-500');
+            bgColor = 'rgba(217, 119, 6, 0.2)';
+            borderColor = 'rgba(217, 119, 6, 1)';
+            dataValues = [40, 50, 95, 90, 60, 50];
+        } else if (category === 'ai') {
+            document.getElementById('skill-desc-ai').classList.add('ring-2', 'ring-slate-500');
+            bgColor = 'rgba(71, 85, 105, 0.2)';
+            borderColor = 'rgba(71, 85, 105, 1)';
+            dataValues = [50, 40, 60, 50, 98, 95];
+        }
+
+        skillsChart.data.datasets[0].data = dataValues;
+        skillsChart.data.datasets[0].backgroundColor = bgColor;
+        skillsChart.data.datasets[0].borderColor = borderColor;
+        skillsChart.update();
+    };
+
+    const ctxImpact = document.getElementById('impactChart').getContext('2d');
+    new Chart(ctxImpact, {
+        type: 'line',
+        data: {
+            labels: ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'Month 6'],
+            datasets: [
+                {
+                    label: 'Organic Traffic',
+                    data: [1200, 1900, 3000, 5000, 8200, 12500],
+                    borderColor: 'rgba(15, 118, 110, 1)',
+                    backgroundColor: 'rgba(15, 118, 110, 0.1)',
+                    borderWidth: 3,
+                    tension: 0.4,
+                    fill: true,
+                    yAxisID: 'y'
+                },
+                {
+                    label: 'Qualified Leads',
+                    data: [15, 28, 45, 85, 150, 240],
+                    borderColor: 'rgba(217, 119, 6, 1)',
+                    backgroundColor: 'transparent',
+                    borderWidth: 3,
+                    borderDash: [5, 5],
+                    tension: 0.4,
+                    yAxisID: 'y1'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: {
+                mode: 'index',
+                intersect: false,
+            },
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: { font: { family: "'Inter', sans-serif" } }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                    titleFont: { family: "'Inter', sans-serif" },
+                    bodyFont: { family: "'Inter', sans-serif" },
+                    padding: 12
+                }
+            },
+            scales: {
+                x: {
+                    grid: { display: false }
+                },
+                y: {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    title: { display: true, text: 'Website Visitors' },
+                    grid: { color: 'rgba(0,0,0,0.05)' }
+                },
+                y1: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    title: { display: true, text: 'Lead Volume' },
+                    grid: { drawOnChartArea: false }
+                }
+            }
+        }
+    });
+
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const portfolioCards = document.querySelectorAll('.portfolio-card');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => {
+                b.classList.remove('active', 'bg-teal-700', 'text-white', 'border-teal-700');
+                b.classList.add('border-slate-600', 'text-slate-300');
+            });
+            
+            btn.classList.add('active', 'bg-teal-700', 'text-white', 'border-teal-700');
+            btn.classList.remove('border-slate-600', 'text-slate-300');
+
+            const filterValue = btn.getAttribute('data-filter');
+
+            portfolioCards.forEach(card => {
+                if (filterValue === 'all') {
+                    card.classList.remove('hide-item');
+                } else {
+                    if (card.classList.contains('item-' + filterValue)) {
+                        card.classList.remove('hide-item');
+                    } else {
+                        card.classList.add('hide-item');
+                    }
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
